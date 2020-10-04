@@ -25,23 +25,36 @@ export const createCategory = (userId,token,category) => {
    };
 
    export const createProduct = (userId,token,product) => {
+    console.log(product);
     return fetch(`${API}/product/create/${userId}`,{
            method:"POST",
            
            headers: {
                 
                 Accept: 'application/json',
-                "Content-Type": "multipart/form-data",
+                //"Content-Type": "multipart/form-data",
                 Authorization: `Bearer ${token}`
            },
            body: product
        })
+       
        .then(response => {
-           console.log(response);
            return (response.json());
         })
         .catch(err => {
             alert(err);
         });
    };
+
+   export const getCategories = () => {
+       return fetch(`${API}/categories`,{
+           method:'GET'
+       })
+       .then(response => {
+           return response.json();
+       })
+       .catch(err => console.log(err));
+   };
+
+
 

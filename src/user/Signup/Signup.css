@@ -1,0 +1,112 @@
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: url("../../assets/bg-colorimg.jpg") no-repeat;
+    background-size: cover;
+ }
+ .inner {
+    width: 850px;
+    height:550px;
+    margin:auto;
+    background: #fff;
+    display: flex;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    -ms-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    -o-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2); 
+}
+.imageholder {
+    background: url("../../assets/logo.jpg") no-repeat;
+    background-size: 425px 550px;
+    width: 50%;
+    padding-right: 15px;
+}
+
+form {
+    width: 50%;
+    padding-top: 77px;
+    padding-right: 60px;
+    padding-left: 15px; 
+}
+  
+  h3 {
+    font-size: 35px;
+    font-family: "Montserrat-SemiBold"; /*"ElMessiri-SemiBold";*/
+    text-align: center;
+    margin-bottom: 35px;
+    margin-left: 35px;
+    color: #ff9a9c; 
+}
+
+.success{
+    margin-left:60px;
+     color:rgb(47, 255, 64);
+     font-weight: bold;
+}
+.error{
+    margin-left:60px;
+    color:red;
+    font-weight: bold;
+}
+
+.formalign {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    max-width: 450px;
+    padding:0 20px 0 20px;
+    margin-left:30px;
+    
+
+}
+.inputfield{
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+    font-size:12px;
+    padding: 10px 10px 10px 10px;
+    background-color: rgba(242, 245, 248, 0.945);
+}
+
+.formbtn {
+    display: flex;
+    align-items: center;
+    margin-left: 50px; 
+}
+
+button {
+    letter-spacing: 2px;
+    border: none;
+    width: 133px;
+    height: 47px;
+    margin-right: 19px;
+    border-radius: 23.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #ff9a9c;
+    font-size: 15px;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Montserrat-SemiBold";
+    
+}
+
+
+
+@media (max-width: 767px) {
+    .inner {
+      display: block; }
+  
+    .imageholder {
+      width: 0%;
+      padding-right: 0; }
+  
+    form {
+      width: 100%;
+      padding: 0px 15px 70px; }
+  
+    .wrapper {
+      background: none; } }

@@ -53,7 +53,7 @@ const newCategoryForm = () => (
 
 const showSuccess = () => {
     if(success) {
-        return <h3>{name} is created</h3>
+        return <h3>Category is created</h3>
     }
 }
 const showError = () => {

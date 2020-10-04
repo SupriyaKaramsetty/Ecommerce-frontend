@@ -1,8 +1,10 @@
+
+
 import React,{useState,useEffect} from 'react';
 import Layout from '../core/Layout/Layout';
 import {isAuthenticated} from '../auth/index';
 import {Link} from 'react-router-dom';
-import {createProduct} from './apiAdmin';
+import {createProduct,getCategories} from './apiAdmin';
 
 
 const AddProduct = () => {
@@ -39,15 +41,25 @@ const AddProduct = () => {
     formData
     } = values;
     
+    //load categories and set form data
 
+    const init = () => {
+        getCategories().then(data => {
+            if(data.error){
+                setValues({...values,error: data.error});
+            }else {
+                setValues({...values,categories: data, formData: new FormData()});
+            }
+        });
+    };
     useEffect(() => {
-        setValues({...values,formData: new FormData()});
+        init();
     },[])
 
    
     const handleChange = item => event => {
         const value = item === 'photo' ? event.target.files[0] : event.target.value;
-        formData.append(item, value);
+       formData.set(item, value);
         setValues({...values,[item]: value});
     };
 
@@ -99,14 +111,18 @@ const AddProduct = () => {
            <div>
                <label>Category</label>
                <select onChange={handleChange('category')}>
-                   <option value='5f4fe31c61dd70134864e68c'>moisturizers</option>
+               <option>Select</option>
+               {categories && categories.map((c,i) => (
+                   <option key={i} value={c._id}>{c.name}</option>
+               ))}
                </select>
            </div>
            <div>
                <label>Shipping</label>
                <select onChange={handleChange('shipping')}>
-                   <option value='0'>nah</option>
-                   <option value='1'>yah</option>
+                   <option>Select</option>
+                   <option value='0'>no</option>
+                   <option value='1'>yes</option>
                </select>
            </div>
            <div>
@@ -116,10 +132,31 @@ const AddProduct = () => {
         <button type="submit">Create Product</button>
         </form>
     );
+
+
+    const showError = () => (
+        <div style={{display: error ? '' : 'none'}}>
+            {error}
+        </div>
+    );
+
+    const showSuccess = () => (
+        <div  style={{display: createdProduct ? '' : 'none'}}>
+            <h2>{`${createdProduct}`} is created!</h2>
+        </div>
+    );
+
+    const showLoading = () => (
+        loading && (
+            <h2>Loading</h2>
+    ));
     return (
         <Layout title="Add a new product" description="Add if needed">
             <div>
-                {newPostForm()}
+            {showLoading()}
+            {showSuccess()}
+            {showError()}
+            {newPostForm()}
             </div>
             
         </Layout>

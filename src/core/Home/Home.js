@@ -1,9 +1,14 @@
-import React from 'react';
-import Layout from '../Layout/Layout';
-
+import React, {Fragment} from 'react';
+import styles from './Home.css';
 const Home = () => {
+
     return(
-        <Layout>hello</Layout>
+        <Fragment>
+        <section className={styles.background}>
+            <div className={styles.firstsec}>Never too old <br></br>for a Makeover
+            </div>
+        </section>
+        </Fragment>
     );
 };
 
