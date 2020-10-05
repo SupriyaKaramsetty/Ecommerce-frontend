@@ -31,6 +31,9 @@ const Menu = (props) => (
             <li className="nav-item pl-4">
                      <Link className="nav-link" to='/productsList' style={isActive(props.history,'/productsList')}>Products</Link>
             </li>
+            <li className="nav-item pl-4">
+                     <Link className="nav-link" to='/shop' style={isActive(props.history,'/shop')}>Shop</Link>
+            </li>
            {isAuthenticated() && isAuthenticated().user.role === 0 && (
                 <li className="nav-item pl-4">
                 <Link className="nav-link" to='/user/dashboard' style={isActive(props.history,'/user/dashboard')}>Dashboard</Link>

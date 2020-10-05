@@ -2,10 +2,10 @@ import React from 'react';
 import {API} from '../config';
 import styles from './Card.css';
 
-const CardImage = (props) => (
+const CardImage = ({item}) => (
     <div className={styles.productimg}>
-        <img src={`${API}/${props.url}/photo/${props.item._id}`}
-        alt={props.item.name}
+        <img src={`${API}/product/photo/${item._id}`}
+        alt={item.name}
         className="mb-3"
         style={{maxHeight: "100%" , maxWidth: "100%"}}
         />

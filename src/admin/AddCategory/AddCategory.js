@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
-import Layout from '../core/Layout/Layout';
-import {isAuthenticated} from '../auth/index';
+import React,{useState , Fragment} from 'react';
+import {isAuthenticated} from '../../auth/index';
 import {Link} from 'react-router-dom';
-import {createCategory} from './apiAdmin';
+import {createCategory} from '../apiAdmin';
+import styles from './AddCategory.css';
 
 const AddCategory = () => {
     const [name, setName] = useState('');
@@ -36,54 +36,57 @@ const clickSubmit = e => {
 };
 
 const newCategoryForm = () => (
-    <form onSubmit={clickSubmit}>
+ <div>
+     <form onSubmit={clickSubmit}>
         <div>
-            <label>Name</label>
+            
             <input
+            className={styles.inputfield}
             type="text"
+            placeholder="Category"
             onChange={handleChange}
             autoFocus
             required />   
         </div>
 
-        <button>Create Category</button>
+        <button style={{marginBottom: "25px", marginLeft:"25px"}}>Create Category</button>
     </form>
+</div>
+   
 );
 
 
 const showSuccess = () => {
     if(success) {
-        return <h3>Category is created</h3>
+        return <h3 className={styles.success}>Category is created</h3>
     }
 }
 const showError = () => {
     if(error) {
-        return <h3>Category should be unique</h3>
+        return <h3 className={styles.error}>Category should be unique</h3>
     }
 }
 
 const goBack = () => (
     <div>
-        <Link to="/admin/dashboard">Back to Dashboard</Link>
+        <Link style={{textDecoration: "none"}} to="/admin/dashboard">Back to Dashboard</Link>
     </div>
 );
     
 
 return (
-    <Layout title="Add a new Category" description="Add if needed">
- 
-    <div>
+
+ <Fragment >
+     <div className={styles.wrapper} >
          {showSuccess()}
          {showError()}
          {newCategoryForm()}  
-         
-         
     </div> 
-    <div>
+    <div className={styles.wrapper} >
     {goBack()}
     </div>
-        
-    </Layout>
+ </Fragment>
+    
 );
 };
 

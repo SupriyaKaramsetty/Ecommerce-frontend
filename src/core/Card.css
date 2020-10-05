@@ -1,11 +1,13 @@
-.btn,.nav:hover {
-    border-radius: 0px;
-}
 
 .productimg {
     min-height: 100px;
 }
 
+.text{
+    text-align: center;
+    font-size:14px;
+    letter-spacing: normal;
+}
 
 
 

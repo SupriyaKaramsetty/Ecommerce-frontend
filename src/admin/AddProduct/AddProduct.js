@@ -1,10 +1,9 @@
-
-
 import React,{useState,useEffect} from 'react';
-import Layout from '../core/Layout/Layout';
-import {isAuthenticated} from '../auth/index';
+import Layout from '../../core/Layout/Layout';
+import {isAuthenticated} from '../../auth/index';
 import {Link} from 'react-router-dom';
-import {createProduct,getCategories} from './apiAdmin';
+import {createProduct,getCategories} from '../apiAdmin';
+import styles from './AddProduct.css';
 
 
 const AddProduct = () => {
@@ -89,47 +88,47 @@ const AddProduct = () => {
 
     const newPostForm = () => (
 
-        <form onSubmit={clickSubmit}>
-            <h4>Post Photo</h4>
-            <div>
-                <label className='btn btn-secondary'>
-                    <input type='file' name='photo' accept='image/*'/>
-                </label>
+        <form className={styles.inner} onSubmit={clickSubmit}>
+            <h4  className={styles.header}>Create Product</h4>
+            <div  className="row">
+                <label className='col-6 mb-3'>Chose Photo</label>
+                    <input className=" btn btn-secondary col-6 mb-3" type='file' name='photo' accept='image/*'/>
+                
             </div>
-           <div>
-               <label>Name</label>
-               <input onChange={handleChange('name')} type='text' value={name}/>
+           <div  className="row">
+               <label className="col-6 mb-3">Name</label>
+               <input className="col-6 mb-3" onChange={handleChange('name')} type='text' value={name}/>
            </div>
-           <div>
-               <label>Description</label>
-               <textarea onChange={handleChange('description')} type='text' value={description}/>
+           <div  className="row">
+               <label className="col-6 mb-3" >Description</label>
+               <textarea className="col-6 mb-3" onChange={handleChange('description')} type='text' value={description}/>
            </div>
-           <div>
-               <label>Price</label>
-               <input onChange={handleChange('price')} type='number' value={price}/>
+           <div  className="row">
+               <label className="col-6 mb-3">Price</label>
+               <input className="col-6 mb-3" onChange={handleChange('price')} type='number' value={price}/>
            </div>
-           <div>
-               <label>Category</label>
-               <select onChange={handleChange('category')}>
+           <div  className="row">
+               <label className="col-6 mb-3">Category</label>
+               <select className="col-6 mb-3" onChange={handleChange('category')}>
                <option>Select</option>
                {categories && categories.map((c,i) => (
                    <option key={i} value={c._id}>{c.name}</option>
                ))}
                </select>
            </div>
-           <div>
-               <label>Shipping</label>
-               <select onChange={handleChange('shipping')}>
+           <div  className="row">
+               <label className="col-6 mb-3">Shipping</label>
+               <select className="col-6 mb-3" onChange={handleChange('shipping')}>
                    <option>Select</option>
                    <option value='0'>no</option>
                    <option value='1'>yes</option>
                </select>
            </div>
-           <div>
-               <label>Quantity</label>
-               <input onChange={handleChange('quantity')} type='number' value={quantity}/>
+           <div  className="row">
+               <label className="col-6 mb-3">Quantity</label>
+               <input className="col-6 mb-3" onChange={handleChange('quantity')} type='number' value={quantity}/>
            </div>
-        <button type="submit">Create Product</button>
+        <button type="submit" className={styles.btn}>Create Product</button>
         </form>
     );
 
@@ -151,7 +150,6 @@ const AddProduct = () => {
             <h2>Loading</h2>
     ));
     return (
-        <Layout title="Add a new product" description="Add if needed">
             <div>
             {showLoading()}
             {showSuccess()}
@@ -159,7 +157,7 @@ const AddProduct = () => {
             {newPostForm()}
             </div>
             
-        </Layout>
+
     );
 };
 
