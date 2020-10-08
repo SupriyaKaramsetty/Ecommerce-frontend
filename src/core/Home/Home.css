@@ -4,7 +4,7 @@
     margin: auto;
     min-height: 100vh;
     display:flex;
-    align-items: center;
+    
     background: url("../../assets/homebg.jpg") no-repeat;
     background-size: cover;
     opacity:0.9;
@@ -12,13 +12,42 @@
 
   }
   
+  
   .firstsec{
     z-index:20;
     color:#f58d8f; 
     font-size:65px;
     font-family: 'Great Vibes', cursive;
     margin-left:90px;
+    margin-top:220px;
     margin-bottom:55px;
+
   }
 
+  .homebtn{
+    letter-spacing: 2px;
+    border: none;
+    width: 140px;
+    height: 50px;
+    margin-top:485px;
+    margin-left: -220px;
+    border-radius: 23.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #ff9a9c;
+    font-size: 19px;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Montserrat-SemiBold";
+    z-index:45;
+  }
+
+
+
+  .homebtn:hover{
+    text-decoration: none;
+  }
   

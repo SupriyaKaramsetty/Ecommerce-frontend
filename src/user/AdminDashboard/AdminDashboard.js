@@ -17,6 +17,8 @@ const AdminDashboard = () => {
                     <li ><Link className={styles.createlinks} style={{marginTop:"100px"}} to='/create/category'>Create Category</Link></li>
                     <hr style={{width:"650px",marginRight:"170px",backgroundColor: "black"}} />
                      <li ><Link className={styles.createlinks} to='/create/product'>Create Product</Link></li>
+                     <hr style={{width:"650px",marginRight:"170px",backgroundColor: "black"}} />
+                     <li ><Link className={styles.createlinks} to='/admin/orders'>View Orders</Link></li>
                      
                  </ul>
                </div>

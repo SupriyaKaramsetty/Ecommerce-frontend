@@ -8,4 +8,11 @@ img {
   height: 100px;
  }
 
+ .cartbadge, .cartbadge:hover {
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+      font-style: italic;
+      background: rgb(243, 247, 19)
+    }
 

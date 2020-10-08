@@ -21,6 +21,12 @@
     -moz-animation: Gradient 15s ease infinite;
     animation: Gradient 15s ease infinite;
 }
+/*product name*/
+.prod_name{
+    background:indigo;
+    color:#fff;
+    font-weight:bold;
+}
  /*
 @-webkit-keyframes Gradient {
     0% {

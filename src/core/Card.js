@@ -1,29 +1,130 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React , {useState} from 'react';
+import {Link, Redirect} from 'react-router-dom';
 import CardImage from './CardImage';
 import styles from './Card.css';
+import moment from 'moment';
+import {addItem, updateItem, removeItem} from './cartHelpers';
 
 
-const Card = (props) => {
+const Card = ({
+    product, 
+    showViewProductButton = true, 
+    showAddToCartButton = true,
+    cartUpdate = false,
+    showRemoveProductButton = false,
+    setRun = f => f,
+    run = undefined}) => {
+        
+    const [redirect,setRedirect] = useState(false);
+    const [count, setCount] = useState(product.count);
+
+    const showViewButton = (showViewProductButton) => {
+        return (
+            showViewProductButton && (
+            <Link to={`/product/${product._id}`}>
+            <button className={` ${styles.text} btn btn-outline-info`}>
+                View Product
+            </button>
+            </Link> 
+        )
+        );
+    };
+
+    const addToCart = () => {
+        addItem(product,
+            setRedirect(false)
+            
+        );
+    };
+
+    
+    const shouldRedirect = redirect => {
+        if(redirect){
+           return  <Redirect to="/cart" />
+        }
+    }
+
+    const showAddButton = showAddToCartButton => {
+        return (
+            showAddToCartButton && (
+            <Link to="/shop">
+                <button onClick={addToCart}  className={` ${styles.text} btn btn-outline-warning`} >
+                      Add to Cart
+                </button>
+            </Link>
+            )
+        );
+    };
+    const showStock = quantity => {
+        return quantity > 0 ? (
+          <span className="badge badge-success badge-pill">In Stock </span>
+        ) : (
+          <span className="badge badge-danger badge-pill">Out of Stock </span>
+        );
+      };
+
+     const handleChange = productId => event => {
+         setRun(!run); // run useEffect in parent Cart
+         setCount(event.target.value < 1 ? 1 : event.target.value);
+         if (event.target.value >= 1) {
+           updateItem(productId, event.target.value);
+         }
+       };
+
+    const showCartUpdateOptions = cartUpdate => {
+        return (
+          cartUpdate && (
+            <div>
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">Quantity</span>
+                </div>
+                <input type="number" className="form-control" value={count} onChange={handleChange(product._id)} />
+              </div>
+            </div>
+          )
+        );
+      };
+
+      const showRemoveButton = showRemoveProductButton => {
+        return (
+          showRemoveProductButton && (
+            <button
+              onClick={() => {
+                removeItem(product._id);
+                setRun(!run); // run useEffect in parent Cart
+              }}
+              className="btn btn-outline-danger mt-2 mb-2 "
+            >
+              Remove Product
+            </button>
+          )
+        );
+      };
     return (
-        <div className="col-4 mb-3">
+
             <div className="card">
-                <div className="card-header">{props.product.name}</div>
+                <div className={`${styles.prod_name} card-header `}>{product.name}</div>
                 <div className="card-body">
-                    
-                    <CardImage item={props.product} url="product"/>
-                    <p>{props.product.description.substring(0,50)}.....</p>
-                    <p>Rs.{props.product.price}</p>
-                     <Link to="/">
-                        <button className={` ${styles.text} btn btn-outline-info`}>View Product
-                        </button>
-                    </Link> 
-                    <button  className={` ${styles.text} btn btn-outline-warning`} >
-                            Add to Cart
-                        </button>
+                    {shouldRedirect(redirect)}
+                    <CardImage item={product} url="product" />
+                    <p className="card-p lead mt-2">{product.description.substring(0, 80)}..... </p>
+                    <p className="card-p black-10">Rs. {product.price}</p>
+                    <p className="black-10">Category: {product.category && product.category.name}</p>
+                    <p className="black-9">Added {moment(product.createdAt).fromNow()}</p>
+                     {showStock(product.quantity)}
+                     <br />
+                     <br />
+                  
+                     
+                       {showViewButton(showViewProductButton)}
+                       {showAddButton(showAddToCartButton)}
+                       {showRemoveButton(showRemoveProductButton)}
+                       {showCartUpdateOptions(cartUpdate)}
+                   
                 </div>
             </div>
-        </div>
+
     );
 };
 

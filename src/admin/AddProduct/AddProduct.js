@@ -16,7 +16,7 @@ const AddProduct = () => {
         category:'',
         shipping:'',
         quantity:'',
-        photo:'',
+        photos: [],
         loading:false,
         error:'',
         createdProduct:'',
@@ -57,7 +57,7 @@ const AddProduct = () => {
 
    
     const handleChange = item => event => {
-        const value = item === 'photo' ? event.target.files[0] : event.target.value;
+        const value = item === 'photos' ? event.target.files : event.target.value;
        formData.set(item, value);
         setValues({...values,[item]: value});
     };
@@ -91,8 +91,8 @@ const AddProduct = () => {
         <form className={styles.inner} onSubmit={clickSubmit}>
             <h4  className={styles.header}>Create Product</h4>
             <div  className="row">
-                <label className='col-6 mb-3'>Chose Photo</label>
-                    <input className=" btn btn-secondary col-6 mb-3" type='file' name='photo' accept='image/*'/>
+                <label className='col-6 mb-3'>Chose Photos</label>
+                    <input className=" btn btn-secondary col-6 mb-3" type='file' multiple name='photos' accept='image/*'/>
                 
             </div>
            <div  className="row">

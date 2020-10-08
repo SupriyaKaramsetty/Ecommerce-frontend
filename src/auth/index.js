@@ -19,6 +19,12 @@ export const signup = (user) => {
         })
    };
 
+   export const passwordResetHashCreated = () => (
+    { type: 'AUTHENTICATION_PASSWORD_RESET_HASH_CREATED' }
+    );
+export const passwordResetHashFailure = () => (
+    { type: 'AUTHENTICATION_PASSWORD_RESET_HASH_FAILURE' }
+    );
    
 export const signin = (user) => {
     return fetch(`${API}/signin`,{
@@ -45,6 +51,10 @@ export const authenticate = (data,next) => {
         next();
     }
 };
+
+
+
+
 
 export const signout = (next) => {
     if(typeof window !== undefined){
