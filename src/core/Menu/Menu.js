@@ -5,6 +5,7 @@ import styles from './Menu.css';
 import {itemTotal} from '../cartHelpers';
 import Cart from '../Cart/Cart';
 
+
 const isActive = (history, path) => {
     if(history.location.pathname === path) {
         return { color:"#ff9a9c"};
@@ -17,21 +18,25 @@ const Menu = (props) => (
 
   <nav className={`${styles.navbar} navbar navbar-expand-lg`}>
      <div className="container">
-     <a className="navbar-brand text-white">
-        <img alt="logo" src={require('../../assets/logo.jpg')} /></a>
-   
-
+     {/* <a className="navbar-brand text-white">
+        <img alt="logo" src={require('../../assets/logo.jpg')} /> </a>
+    */}
+    <a className={`navbar-brand text-white ${styles.logofont}`}>PerfectU</a>
+        
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".nvbCollapse" aria-controls="nvbCollapse">
                <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" className="nvbCollapse">
            <ul className="navbar-nav ml-auto p-3" >
+           
+			
+		    
             <li className="nav-item pl-4">
                      <Link className="nav-link" to='/' style={isActive(props.history,'/')}>Home</Link>
             </li>
-            <li className="nav-item pl-4">
+            {/* <li className="nav-item pl-4">
                      <Link className="nav-link" to='/productsList' style={isActive(props.history,'/productsList')}>Products</Link>
-            </li>
+            </li> */}
             <li className="nav-item pl-4">
                      <Link className="nav-link" to='/shop' style={isActive(props.history,'/shop')}>Shop</Link>
             </li>

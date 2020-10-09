@@ -7,7 +7,7 @@ const CardImage = ({item}) => (
         <img src={`${API}/product/photo/${item._id}`}
         alt={item.name}
         className="mb-3"
-        style={{maxHeight: "100%" , maxWidth: "100%"}}
+        style={{height: "75%" , width: "75%"}}
         />
 
 

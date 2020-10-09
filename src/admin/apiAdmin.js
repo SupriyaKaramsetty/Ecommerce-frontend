@@ -24,6 +24,27 @@ export const createCategory = (userId,token,category) => {
         });
    };
 
+   //create brand
+   export const createBrand = (userId,token,brand) => {
+    return fetch(`${API}/brand/create/${userId}`,{
+           method:"POST",
+           
+           headers: {
+                
+                Accept: 'application/json',
+               "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+           },
+           body: JSON.stringify(brand)
+       })
+       .then(response => {
+           return (response.json());
+        })
+        .catch(err => {
+            alert(err);
+        });
+   };
+
    export const createProduct = (userId,token,product) => {
     console.log(product);
     return fetch(`${API}/product/create/${userId}`,{
@@ -55,6 +76,18 @@ export const createCategory = (userId,token,category) => {
        })
        .catch(err => console.log(err));
    };
+
+   //brands list
+   export const getBrands = () => {
+    return fetch(`${API}/brandlist`,{
+        method:'GET'
+    })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+};
+
 
    export const listOrders = (userId, token) => {
     return fetch(`${API}/order/list/${userId}`, {

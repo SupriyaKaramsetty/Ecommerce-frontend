@@ -1,19 +1,22 @@
 import React, {useState,useEffect} from 'react';
-import Card from './Card';
-import { getCategories,getFilteredProducts} from './apiCore';
-import Checkbox from './Checkbox';
-import {prices} from './fixedPrices';
-import Radiobox from './Radiobox';
+import Card from '../Card';
+import { getCategories, getBrands , getFilteredProducts} from '../apiCore';
+import Checkbox from '../Checkbox';
+import {prices} from '../fixedPrices';
+import Radiobox from '../Radiobox';
+import styles from './Shop.css';
 
 const Shop = () => {
     
     const [myFilters,setMyFilters] = useState({
         filters:{
             category:[],
+            brand:[],
             price:[]
         } 
     });
     const [categories, setCategories] = useState([]);
+    const [brandlist, setBrandList] = useState([]);
     const [error, setError] = useState(false);
     const [limit, setLimit] = useState(6);
     const [skip, setSkip] = useState(0);
@@ -28,6 +31,15 @@ const Shop = () => {
                 setCategories(data);
             }
         });
+        getBrands().then(data => {
+            if(data.error){
+                setError(data.error);
+            }else {
+                setBrandList(data);
+            }
+        });
+
+
     };
 
     const loadFilteredResults = newFilters => {
@@ -108,18 +120,22 @@ const Shop = () => {
 
         <div className="row">
             <div className="col-3">
-                <span>FILTER BY</span>
-                <div>CATEGORY</div>
+                <span className={styles.category}>FILTER BY</span><hr />
+                <div className={styles.categories}>CATEGORY</div>
                 <ul>
-                        <Checkbox categories={categories} handleFilters={ filters => handleFilters(filters,'category')}/>
+                        <Checkbox list={categories} handleFilters={ filters => handleFilters(filters,'category')}/>
                 </ul>
-                 <div>PRICE</div>
+                <div className={styles.categories}>BRAND</div>
+                <ul>
+                        <Checkbox list={brandlist} handleFilters={ filters => handleFilters(filters,'brand')}/>
+                </ul>
+                 <div className={styles.categories}>PRICE</div>
                 <div>
-                        <Radiobox prices={prices} handleFilters={ filters => handleFilters(filters,'price')}/>
+                        <Radiobox list={prices} handleFilters={ filters => handleFilters(filters,'price')}/>
                 </div> 
             </div>
               <div className="col-9">
-              <h2 className="mb-4">Products</h2><br></br>
+              <h2 className={styles.products}>Products</h2><hr />
                   <div className="row">
                         
                          {filteredResults.map((product,i) => (

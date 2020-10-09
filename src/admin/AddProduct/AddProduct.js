@@ -2,8 +2,9 @@ import React,{useState,useEffect} from 'react';
 import Layout from '../../core/Layout/Layout';
 import {isAuthenticated} from '../../auth/index';
 import {Link} from 'react-router-dom';
-import {createProduct,getCategories} from '../apiAdmin';
+import {createProduct,getCategories , getBrands} from '../apiAdmin';
 import styles from './AddProduct.css';
+//import { getBrands } from '../../core/apiCore';
 
 
 const AddProduct = () => {
@@ -13,7 +14,9 @@ const AddProduct = () => {
         description:'',
         price:'',
         categories:[],
+        brandlist:[],
         category:'',
+        brand:'',
         shipping:'',
         quantity:'',
         photos: [],
@@ -30,7 +33,9 @@ const AddProduct = () => {
     description,
     price,
     categories,
+    brandlist,
     category,
+    brand,
     shipping,
     quantity,
     loading,
@@ -50,10 +55,21 @@ const AddProduct = () => {
                 setValues({...values,categories: data, formData: new FormData()});
             }
         });
+    
+        getBrands().then(data => {
+            if(data.error){
+                setValues({...values,error: data.error});
+            }else {
+                setValues({...values,brandlist: data, formData: new FormData()});
+            }
+        });
     };
+
     useEffect(() => {
         init();
     },[])
+
+
 
    
     const handleChange = item => event => {
@@ -113,6 +129,15 @@ const AddProduct = () => {
                <option>Select</option>
                {categories && categories.map((c,i) => (
                    <option key={i} value={c._id}>{c.name}</option>
+               ))}
+               </select>
+           </div>
+           <div  className="row">
+               <label className="col-6 mb-3">Brand</label>
+               <select className="col-6 mb-3" onChange={handleChange('brand')}>
+               <option>Select</option>
+               {brandlist && brandlist.map((b,i) => (
+                   <option key={i} value={b._id}>{b.name}</option>
                ))}
                </select>
            </div>

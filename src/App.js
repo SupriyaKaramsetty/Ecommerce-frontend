@@ -1,6 +1,6 @@
 import React from 'react';
 
 
-const App = () => <div>This is a beauty shop webapp</div>;
+const App = () => <div>This is a beauty and wellness website</div>;
 
 export default App;

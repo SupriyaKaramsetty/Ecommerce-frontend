@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { isAuthenticated } from "../auth/index";
+import { isAuthenticated } from "../../auth/index";
 import { Link } from "react-router-dom";
-import { listOrders, getStatusValues , updateOrderStatus } from "./apiAdmin";
+import { listOrders, getStatusValues , updateOrderStatus } from "../apiAdmin";
 import moment from "moment";
+import styles from './Orders.css';
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
@@ -40,12 +41,12 @@ const Orders = () => {
         const showOrdersLength = () => {
             if (orders.length > 0) {
                 return (
-                    <h1 className="text-danger display-2">
+                    <h1 className={styles.totorderlen}>
                         Total orders: {orders.length}
                     </h1>
                 );
             } else {
-                return <h1 className="text-danger">No orders</h1>;
+                return <h1 className={styles.totorderlen}>No orders</h1>;
             }
         };
         
@@ -105,10 +106,10 @@ const Orders = () => {
                             <div
                                 className="mt-5"
                                 key={oIndex}
-                                style={{ borderBottom: "5px solid indigo" }}
+                                
                             >
-                                <h2 className="mb-5">
-                                    <span className="bg-primary">
+                                <h2>
+                                    <span className={styles.orderid}>
                                         Order ID: {o._id}
                                     </span>
                                 </h2>

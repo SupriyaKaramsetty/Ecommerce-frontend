@@ -1,0 +1,27 @@
+/* body{
+    background-color: rgb(218, 216, 216);
+} */
+
+.category{
+    margin-top:75px;
+    margin-left: 140px;
+    text-align: center;
+    font-size:xx-large;
+    font-family: "Montserrat-SemiBold";
+}
+
+.categories{
+    margin-top:35px;
+    margin-left: 50px;
+    text-align: center;
+    font-size:large;
+    font-family: "Montserrat";
+}
+
+.products{
+    margin-top:7px;
+    text-align: center;
+    font-size:xx-large;
+    font-family: "Montserrat-SemiBold";
+}
+

@@ -5,14 +5,15 @@ import Signup from './user/Signup/Signup';
 import Signin from './user/Signin/Signin';
 import Menu from './core/Menu/Menu';
 import Products from './core/Products/Products';
-import Shop from './core/Shop';
+import Shop from './core/Shop/Shop';
 import PrivateRoute from './auth/PrivateRoute'
 import Dashboard from './user/UserDashboard/UserDashboard';
 import AdminRoute from './auth/AdminRoute';
 import AdminDashboard from './user/AdminDashboard/AdminDashboard';
 import AddCategory from './admin/AddCategory/AddCategory';
+import AddBrand from './admin/AddBrand/AddBrand';
 import AddProduct from './admin/AddProduct/AddProduct';
-import Orders from './admin/Orders';
+import Orders from './admin/Orders/Orders';
 import Cart from './core/Cart/Cart';
 import Profile from './user/Profile';
 import Product from './core/Product/Product';
@@ -32,6 +33,7 @@ const Routes = () => {
             <PrivateRoute path='/user/dashboard' exact component={Dashboard} /> 
             <AdminRoute path='/admin/dashboard' exact component={AdminDashboard} /> 
             <AdminRoute path='/create/category' exact component={AddCategory} /> 
+            <AdminRoute path='/create/brand' exact component={AddBrand} /> 
             <AdminRoute path='/create/product' exact component={AddProduct} />
             <AdminRoute path='/admin/orders' exact component={Orders} />
             <PrivateRoute path="/profile/:userId" exact component={Profile} />

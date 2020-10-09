@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 
-const Radiobox = ({prices,handleFilters}) => {
+const Radiobox = ({list,handleFilters}) => {
 
     const [value,setValue] = useState(0);
 
@@ -10,7 +10,7 @@ const Radiobox = ({prices,handleFilters}) => {
             setValue(event.target.value);
     };
 
-    return prices.map((p,i) => (
+    return list.map((p,i) => (
      <div key={i} >
          <input
             onChange={handleChange}

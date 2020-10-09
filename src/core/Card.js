@@ -94,7 +94,7 @@ const Card = ({
                 removeItem(product._id);
                 setRun(!run); // run useEffect in parent Cart
               }}
-              className="btn btn-outline-danger mt-2 mb-2 "
+              className={`btn btn-outline-danger  ${styles.rmvprod}`}
             >
               Remove Product
             </button>
@@ -103,26 +103,31 @@ const Card = ({
       };
     return (
 
-            <div className="card">
+            <div className={styles.card}>
                 <div className={`${styles.prod_name} card-header `}>{product.name}</div>
                 <div className="card-body">
                     {shouldRedirect(redirect)}
-                    <CardImage item={product} url="product" />
-                    <p className="card-p lead mt-2">{product.description.substring(0, 80)}..... </p>
-                    <p className="card-p black-10">Rs. {product.price}</p>
-                    <p className="black-10">Category: {product.category && product.category.name}</p>
-                    <p className="black-9">Added {moment(product.createdAt).fromNow()}</p>
+                    <CardImage item={product} url="product"  />
+                    <p className={styles.desc}>{product.description.substring(0, 50)}..... </p>
+                    <p className={styles.price}>Rs. {product.price}</p>
+                    {/* <p className="black-10">Category: {product.category && product.category.name}</p>
+                    <p className="black-9">Added {moment(product.createdAt).fromNow()}</p> */}
                      {showStock(product.quantity)}
                      <br />
                      <br />
-                  
+ 
+  
                      
                        {showViewButton(showViewProductButton)}
                        {showAddButton(showAddToCartButton)}
                        {showRemoveButton(showRemoveProductButton)}
+                       </div>
+                       <div>
                        {showCartUpdateOptions(cartUpdate)}
+                       </div>
+                       
                    
-                </div>
+                
             </div>
 
     );
