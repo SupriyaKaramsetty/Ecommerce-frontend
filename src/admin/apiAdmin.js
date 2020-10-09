@@ -45,6 +45,26 @@ export const createCategory = (userId,token,category) => {
         });
    };
 
+      //create pc
+      export const createPc = (userId,token,pc) => {
+        return fetch(`${API}/pc/create/${userId}`,{
+               method:"POST",
+               
+               headers: {
+                    
+                    Accept: 'application/json',
+                   "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+               },
+               body: JSON.stringify(pc)
+           })
+           .then(response => {
+               return (response.json());
+            })
+            .catch(err => {
+                alert(err);
+            });
+       };
    export const createProduct = (userId,token,product) => {
     console.log(product);
     return fetch(`${API}/product/create/${userId}`,{
@@ -79,7 +99,17 @@ export const createCategory = (userId,token,category) => {
 
    //brands list
    export const getBrands = () => {
-    return fetch(`${API}/brandlist`,{
+    return fetch(`${API}/brands`,{
+        method:'GET'
+    })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+};
+
+export const getPcs = () => {
+    return fetch(`${API}/pcs`,{
         method:'GET'
     })
     .then(response => {

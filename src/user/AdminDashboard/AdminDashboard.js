@@ -18,6 +18,8 @@ const AdminDashboard = () => {
                     <hr style={{width:"650px",marginRight:"170px",marginBottom:"10px",backgroundColor: "black"}} />
                     <li ><Link className={styles.createlinks} style={{marginTop:"100px"}} to='/create/brand'>Create Brand</Link></li>
                     <hr style={{width:"650px",marginRight:"170px",marginBottom:"10px",backgroundColor: "black"}} />
+                    <li ><Link className={styles.createlinks} style={{marginTop:"100px"}} to='/create/pc'>Create Personal Care Category</Link></li>
+                    <hr style={{width:"650px",marginRight:"170px",marginBottom:"10px",backgroundColor: "black"}} />
                      <li ><Link className={styles.createlinks} to='/create/product'>Create Product</Link></li>
                      <hr style={{width:"650px",marginRight:"170px",marginBottom:"10px",backgroundColor: "black"}} />
                      <li ><Link className={styles.createlinks} to='/admin/orders'>View Orders</Link></li>

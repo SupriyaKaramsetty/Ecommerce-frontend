@@ -49,7 +49,7 @@ const newBrandForm = () => (
             required />   
         </div>
 
-        <button style={{marginBottom: "25px", marginLeft:"25px"}}>Create Brand</button>
+        <button className={styles.addbrandbutton} style={{marginBottom: "25px", marginLeft:"25px"}}>Create Brand</button>
     </form>
 </div>
    

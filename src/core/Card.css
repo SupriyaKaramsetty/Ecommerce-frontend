@@ -42,11 +42,58 @@
 
   /*cart*/
 
-  .rmvprod{
-    text-align: center;
-    
-    font-size:12px;
-    letter-spacing: normal;
-    padding-right:20px;
-  }
+
   
+
+  .addtocart {
+    /*padding:10px;*/
+    padding:10px 12px;
+    margin-left: 3px;
+    text-align: center;
+    font-size:20px;
+    border: 2px solid rgb(250, 222, 62);
+    background-color: white;
+    color:rgb(250, 222, 62);
+}
+
+.addtocart:hover{
+    border: none;
+    background-color:rgb(250, 222, 62);
+    text-decoration:none;
+    color: white;
+}
+
+.viewproduct {
+  padding:10px;
+  margin-right: 5px;
+  text-align: center;
+  font-size:20px;
+  border: 2px solid rgb(45, 146, 240);
+  background-color: white;
+  color:rgb(45, 146, 240);
+}
+
+.viewproduct:hover{
+  border: none;
+  background-color: rgb(45, 146, 240);
+  text-decoration:none;
+  color: white;
+}
+
+.removeproduct {
+  padding:10px;
+  margin-right: 5px;
+  text-align: center;
+  font-size:20px;
+  border: 2px solid rgb(228, 16, 16);
+  background-color: white;
+  color:rgb(228, 16, 16);
+}
+
+.removeproduct:hover{
+  border: none;
+  background-color:rgb(228, 16, 16);
+  text-decoration:none;
+  color: white;
+}
+

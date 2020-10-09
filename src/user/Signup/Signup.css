@@ -74,7 +74,7 @@ form {
     margin-left: 50px; 
 }
 
-button {
+.signupbutton {
     letter-spacing: 2px;
     border: none;
     width: 133px;

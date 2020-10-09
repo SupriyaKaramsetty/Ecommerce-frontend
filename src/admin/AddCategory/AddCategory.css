@@ -15,14 +15,39 @@
 }
 
 .success{
+    margin-top: 50px;
     margin-right:400px;
      color:rgb(47, 255, 64);
      font-weight: bold;
     width:500px;
+    margin-left: -120px;
 }
+
 .error{
+    margin-top: 50px;
     margin-right:400px;
     color:red;
     font-weight: bold;
     width:500px;
+    margin-left: -140px;
+}
+
+.addcatbutton {
+    letter-spacing: 2px;
+    border: none;
+    width: 133px;
+    height: 47px;
+    margin-right: 19px;
+    border-radius: 23.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #ff9a9c;
+    font-size: 15px;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Montserrat-SemiBold";
+    
 }

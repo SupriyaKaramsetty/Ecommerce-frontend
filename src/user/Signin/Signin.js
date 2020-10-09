@@ -76,8 +76,8 @@ const showLoading = () =>
                 />
             </div >
             <div className={styles.formbtn}>
-             <button  onClick={clickSubmit}>Submit</button>
-             <span className={styles.forgotpd}><a>Forgot password?</a></span>
+             <button className={styles.signinbutton} onClick={clickSubmit}>Submit</button>
+             {/* <span className={styles.forgotpd}><a>Forgot password?</a></span> */}
             </div>
            
         </form>

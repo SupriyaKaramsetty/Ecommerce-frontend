@@ -4,6 +4,7 @@ import { emptyCart } from '../cartHelpers';
 import Card from '../Card';
 import { isAuthenticated } from '../../auth/index';
 import { Link } from 'react-router-dom';
+import styles from './Checkout.css';
  import "braintree-web"; // not using this package
 import DropIn from 'braintree-web-drop-in-react';
 
@@ -14,7 +15,10 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
         clientToken: null,
         error: '',
         instance: {},
-        address: ''
+        name:'',
+        phone: '',
+        address: '',
+        pin:''
     });
 
      const userId = isAuthenticated() && isAuthenticated().user._id;
@@ -36,9 +40,20 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
         getToken(userId, token);
     }, []);
 
+    const handleName = event => {
+        setData({ ...data, name: event.target.value });
+    };
+    const handlePhone = event => {
+        setData({ ...data, phone: event.target.value });
+    };
     const handleAddress = event => {
         setData({ ...data, address: event.target.value });
     };
+    const handlePin= event => {
+        setData({ ...data, pin: event.target.value });
+    };
+
+    
 
     const getTotal = () => {
         return products.reduce((currentValue, nextValue) => {
@@ -84,7 +99,11 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
                             products: products,
                             transaction_id: response.transaction.id,
                             amount: response.transaction.amount,
-                            address: deliveryAddress
+                            name: Name,
+                            phone: phoneNumber,
+                            address: deliveryAddress,
+                            pin: Pincode
+                            
                         };
 
                         createOrder(userId, token, createOrderData)
@@ -118,6 +137,24 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
         <div onBlur={() => setData({ ...data, error: '' })}>
             {data.clientToken !== null && products.length > 0 ? (
                 <div>
+                     <div className="gorm-group mb-3">
+                        <label className="text-muted">Full Name:</label>
+                        <input type="text"
+                            onChange={handleName}
+                            className="form-control"
+                            value={data.name}
+                            placeholder="Enter your name"
+                        />
+                    </div>
+                    <div className="gorm-group mb-3">
+                        <label className="text-muted">Mobile:</label>
+                        <input type="number"
+                            onChange={handlePhone}
+                            className="form-control"
+                            value={data.phone}
+                            placeholder="+91"
+                        />
+                    </div>
                     <div className="gorm-group mb-3">
                         <label className="text-muted">Delivery address:</label>
                         <textarea
@@ -125,6 +162,15 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
                             className="form-control"
                             value={data.address}
                             placeholder="Type your delivery address here..."
+                        />
+                    </div>
+                    <div className="gorm-group mb-3">
+                        <label className="text-muted">Pincode:</label>
+                        <input type="number"
+                            onChange={handlePin}
+                            className="form-control"
+                            value={data.pin}
+                            placeholder="Your pincode"
                         />
                     </div>
 
@@ -153,13 +199,15 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
                 
         ) : (
             <Link to="/signin">
-                <button className="btn btn-primary">Sign in to checkout</button>
+                <button className={styles.signtocheckout}>Sign in to checkout</button>
             </Link>
         );
     };
 
+     let Name = data.name;
+     let phoneNumber = data.phone;
      let deliveryAddress = data.address;
-
+     let Pincode = data.pin;
 
 
  

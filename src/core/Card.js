@@ -22,7 +22,7 @@ const Card = ({
         return (
             showViewProductButton && (
             <Link to={`/product/${product._id}`}>
-            <button className={` ${styles.text} btn btn-outline-info`}>
+            <button className={styles.viewproduct}>
                 View Product
             </button>
             </Link> 
@@ -47,11 +47,12 @@ const Card = ({
     const showAddButton = showAddToCartButton => {
         return (
             showAddToCartButton && (
-            <Link to="/shop">
-                <button onClick={addToCart}  className={` ${styles.text} btn btn-outline-warning`} >
+            <Link>
+                <button className={styles.addtocart} onClick={addToCart}   >
                       Add to Cart
                 </button>
-            </Link>
+              </Link>
+            
             )
         );
     };
@@ -94,7 +95,7 @@ const Card = ({
                 removeItem(product._id);
                 setRun(!run); // run useEffect in parent Cart
               }}
-              className={`btn btn-outline-danger  ${styles.rmvprod}`}
+              className={styles.removeproduct}
             >
               Remove Product
             </button>

@@ -12,6 +12,7 @@ import AdminRoute from './auth/AdminRoute';
 import AdminDashboard from './user/AdminDashboard/AdminDashboard';
 import AddCategory from './admin/AddCategory/AddCategory';
 import AddBrand from './admin/AddBrand/AddBrand';
+import AddPersonalCare from './admin/AddPersonalCare/AddPersonalCare';
 import AddProduct from './admin/AddProduct/AddProduct';
 import Orders from './admin/Orders/Orders';
 import Cart from './core/Cart/Cart';
@@ -34,6 +35,7 @@ const Routes = () => {
             <AdminRoute path='/admin/dashboard' exact component={AdminDashboard} /> 
             <AdminRoute path='/create/category' exact component={AddCategory} /> 
             <AdminRoute path='/create/brand' exact component={AddBrand} /> 
+            <AdminRoute path='/create/pc' exact component={AddPersonalCare} />
             <AdminRoute path='/create/product' exact component={AddProduct} />
             <AdminRoute path='/admin/orders' exact component={Orders} />
             <PrivateRoute path="/profile/:userId" exact component={Profile} />

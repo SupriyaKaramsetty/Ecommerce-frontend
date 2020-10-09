@@ -93,7 +93,7 @@ const Signup = () => {
                 
             </div>
             <div className={styles.formbtn}>
-					<button onClick={clickSubmit}>Sign Up</button>
+					<button className={styles.signupbutton} onClick={clickSubmit}>Sign Up</button>
 					<p>Already Have account? <Link to="/signin">Login</Link></p>
 			</div>
 

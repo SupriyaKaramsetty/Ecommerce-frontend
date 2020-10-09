@@ -153,7 +153,7 @@ const AddProduct = () => {
                <label className="col-6 mb-3">Quantity</label>
                <input className="col-6 mb-3" onChange={handleChange('quantity')} type='number' value={quantity}/>
            </div>
-        <button type="submit" className={styles.btn}>Create Product</button>
+        <button type="submit" className={styles.addprodbutton}>Create Product</button>
         </form>
     );
 

@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import Card from '../Card';
-import { getCategories, getBrands , getFilteredProducts} from '../apiCore';
+import { getCategories, getBrands , getPcs , getFilteredProducts} from '../apiCore';
 import Checkbox from '../Checkbox';
 import {prices} from '../fixedPrices';
 import Radiobox from '../Radiobox';
@@ -12,11 +12,13 @@ const Shop = () => {
         filters:{
             category:[],
             brand:[],
+            pc:[],
             price:[]
         } 
     });
     const [categories, setCategories] = useState([]);
-    const [brandlist, setBrandList] = useState([]);
+    const [brands, setBrands] = useState([]);
+    const [pcs, setPcs] = useState([]);
     const [error, setError] = useState(false);
     const [limit, setLimit] = useState(6);
     const [skip, setSkip] = useState(0);
@@ -35,7 +37,14 @@ const Shop = () => {
             if(data.error){
                 setError(data.error);
             }else {
-                setBrandList(data);
+                setBrands(data);
+            }
+        });
+        getPcs().then(data => {
+            if(data.error){
+                setError(data.error);
+            }else {
+                setPcs(data);
             }
         });
 
@@ -127,7 +136,11 @@ const Shop = () => {
                 </ul>
                 <div className={styles.categories}>BRAND</div>
                 <ul>
-                        <Checkbox list={brandlist} handleFilters={ filters => handleFilters(filters,'brand')}/>
+                        <Checkbox list={brands} handleFilters={ filters => handleFilters(filters,'brand')}/>
+                </ul>
+                <div className={styles.categories}>PERSONAL CARE</div>
+                <ul>
+                        <Checkbox list={pcs} handleFilters={ filters => handleFilters(filters,'pc')}/>
                 </ul>
                  <div className={styles.categories}>PRICE</div>
                 <div>

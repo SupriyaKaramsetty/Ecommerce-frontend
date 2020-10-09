@@ -1,0 +1,15 @@
+.signtocheckout {
+    padding:20px;
+    text-align: center;
+    font-size:20px;
+    border: 2px solid rgb(240, 133, 45);
+    background-color: white;
+    color:rgb(240, 133, 45);
+}
+
+.signtocheckout:hover{
+    border: none;
+    background-color: rgb(240, 133, 45);
+    text-decoration:none;
+    color: white;
+}

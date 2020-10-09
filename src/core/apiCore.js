@@ -26,7 +26,17 @@ export const getCategories = () => {
 };
 
 export const getBrands = () => {
-    return fetch(`${API}/brandlist`,{
+    return fetch(`${API}/brands`,{
+        method:'GET'
+    })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+};
+
+export const getPcs = () => {
+    return fetch(`${API}/pcs`,{
         method:'GET'
     })
     .then(response => {
