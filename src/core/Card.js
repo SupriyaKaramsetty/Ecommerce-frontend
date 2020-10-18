@@ -90,6 +90,7 @@ const Card = ({
       const showRemoveButton = showRemoveProductButton => {
         return (
           showRemoveProductButton && (
+            <Link>
             <button
               onClick={() => {
                 removeItem(product._id);
@@ -99,6 +100,8 @@ const Card = ({
             >
               Remove Product
             </button>
+            </Link>
+            
           )
         );
       };
@@ -110,9 +113,10 @@ const Card = ({
                     {shouldRedirect(redirect)}
                     <CardImage item={product} url="product"  />
                     <p className={styles.desc}>{product.description.substring(0, 50)}..... </p>
-                    <p className={styles.price}>Rs. {product.price}</p>
-                    {/* <p className="black-10">Category: {product.category && product.category.name}</p>
-                    <p className="black-9">Added {moment(product.createdAt).fromNow()}</p> */}
+                    <p className={styles.price}>Rs. {product.price}</p> 
+                     <p className="black-10">Sold By: {product.brand && product.brand.name}  </p>
+                     
+                    {/* <p className="black-9">Added {moment(product.createdAt).fromNow()}</p>  */}
                      {showStock(product.quantity)}
                      <br />
                      <br />

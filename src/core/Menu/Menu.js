@@ -6,6 +6,7 @@ import {itemTotal} from '../cartHelpers';
 import Cart from '../Cart/Cart';
 
 
+
 const isActive = (history, path) => {
     if(history.location.pathname === path) {
         return { color:"#ff9a9c"};
@@ -14,6 +15,8 @@ const isActive = (history, path) => {
         return {color:"#ffffff"};
      } 
 };
+
+        
 const Menu = (props) => (
 
   <nav className={`${styles.navbar} navbar navbar-expand-lg`}>
@@ -45,12 +48,12 @@ const Menu = (props) => (
             </li>
            {isAuthenticated() && isAuthenticated().user.role === 0 && (
                 <li className="nav-item pl-4">
-                <Link className="nav-link" to='/user/dashboard' style={isActive(props.history,'/user/dashboard')}>Dashboard</Link>
+                <Link className="nav-link" to='/user/dashboard' style={isActive(props.history,'/user/dashboard')}> Dashboard</Link>
                 </li>
            )}
            {isAuthenticated() && isAuthenticated().user.role === 1 && (     
                 <li className="nav-item pl-4">
-                     <Link className="nav-link" to='/admin/dashboard' style={isActive(props.history,'/admin/dashboard')}>Dashboard</Link>
+                     <Link className="nav-link" to='/admin/dashboard' style={isActive(props.history,'/admin/dashboard')}>{isAuthenticated().user.name}'s Dashboard</Link>
                 </li>
            )}
  

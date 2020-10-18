@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react';
-import Layout from '../../core/Layout/Layout';
+
 import {isAuthenticated} from '../../auth/index';
 import {Link} from 'react-router-dom';
-import {createProduct,getCategories , getBrands} from '../apiAdmin';
+import {createProduct,getCategories , getBrands , getPcs} from '../apiAdmin';
 import styles from './AddProduct.css';
 //import { getBrands } from '../../core/apiCore';
 
@@ -14,9 +14,11 @@ const AddProduct = () => {
         description:'',
         price:'',
         categories:[],
-        brandlist:[],
+        brands:[],
+        pcs:[],
         category:'',
         brand:'',
+        pc:'',
         shipping:'',
         quantity:'',
         photos: [],
@@ -33,9 +35,11 @@ const AddProduct = () => {
     description,
     price,
     categories,
-    brandlist,
+    brands,
+    pcs,
     category,
     brand,
+    pc,
     shipping,
     quantity,
     loading,
@@ -60,7 +64,15 @@ const AddProduct = () => {
             if(data.error){
                 setValues({...values,error: data.error});
             }else {
-                setValues({...values,brandlist: data, formData: new FormData()});
+                setValues({...values,brands: data, formData: new FormData()});
+            }
+        });
+
+        getPcs().then(data => {
+            if(data.error){
+                setValues({...values,error: data.error});
+            }else {
+                setValues({...values,pcs: data, formData: new FormData()});
             }
         });
     };
@@ -136,8 +148,17 @@ const AddProduct = () => {
                <label className="col-6 mb-3">Brand</label>
                <select className="col-6 mb-3" onChange={handleChange('brand')}>
                <option>Select</option>
-               {brandlist && brandlist.map((b,i) => (
+               {brands && brands.map((b,i) => (
                    <option key={i} value={b._id}>{b.name}</option>
+               ))}
+               </select>
+           </div>
+           <div  className="row">
+               <label className="col-6 mb-3">Personal Care</label>
+               <select className="col-6 mb-3" onChange={handleChange('pc')}>
+               <option>Select</option>
+               {pcs && pcs.map((pc,i) => (
+                   <option key={i} value={pc._id}>{pc.name}</option>
                ))}
                </select>
            </div>

@@ -75,7 +75,7 @@ const Dashboard = () => {
                                             <div key={i}>
                                                 <h6>Product name: {p.name}</h6>
                                                 <h6>
-                                                    Product price: ${p.price}
+                                                    Product price: Rs.{p.price}
                                                 </h6>
                                                 <h6>
                                                     Purchased date:{" "}

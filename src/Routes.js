@@ -4,7 +4,7 @@ import Home from './core/Home/Home';
 import Signup from './user/Signup/Signup';
 import Signin from './user/Signin/Signin';
 import Menu from './core/Menu/Menu';
-import Products from './core/Products/Products';
+
 import Shop from './core/Shop/Shop';
 import PrivateRoute from './auth/PrivateRoute'
 import Dashboard from './user/UserDashboard/UserDashboard';
@@ -26,7 +26,7 @@ const Routes = () => {
         <Menu />
         <Switch>
             <Route path='/' exact component={Home}></Route>
-            <Route path='/productsList' exact component={Products}></Route>
+            
             <Route path='/shop' exact component={Shop}></Route>
             <Route path='/signup' exact component={Signup}></Route>
             <Route path='/signin' exact component={Signin}></Route>

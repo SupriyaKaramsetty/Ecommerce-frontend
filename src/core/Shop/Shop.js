@@ -41,6 +41,7 @@ const Shop = () => {
             }
         });
         getPcs().then(data => {
+            console.log(data);
             if(data.error){
                 setError(data.error);
             }else {
