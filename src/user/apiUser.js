@@ -56,3 +56,18 @@ export const getPurchaseHistory = (userId, token) => {
         })
         .catch(err => console.log(err));
 };
+
+export const addComment = (token, productId, comment) => {
+    return fetch(`${API}/products/comment`,
+      {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({productId, comment})
+      })
+      .then(response => response.json())
+      .catch(err => console.log(err));
+  };

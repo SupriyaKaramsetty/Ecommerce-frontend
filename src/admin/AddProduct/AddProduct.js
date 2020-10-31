@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 
 import {isAuthenticated} from '../../auth/index';
 import {Link} from 'react-router-dom';
-import {createProduct,getCategories , getBrands , getPcs} from '../apiAdmin';
+import {createProduct, getCategories , getBrands , getPcs , getHairs} from '../apiAdmin';
 import styles from './AddProduct.css';
 //import { getBrands } from '../../core/apiCore';
 
@@ -16,9 +16,11 @@ const AddProduct = () => {
         categories:[],
         brands:[],
         pcs:[],
+        hairs:[],
         category:'',
         brand:'',
         pc:'',
+        hair:'',
         shipping:'',
         quantity:'',
         photos: [],
@@ -27,52 +29,97 @@ const AddProduct = () => {
         createdProduct:'',
         redirectToProfile:false,
         formData:''
+        
     });
+    
+    const [categories, setCategories] = useState([]);
+    const [brands, setBrands] = useState([]);
+    const [hairs, setHairs] = useState([]);
+    const [pcs, setPcs] = useState([]);
 
     const {user,token} = isAuthenticated();
     const {
     name,
     description,
     price,
-    categories,
-    brands,
-    pcs,
     category,
     brand,
     pc,
+    hair,
     shipping,
     quantity,
     loading,
     error,
     createdProduct,
-    redirectToProfile,
+    redirectToProfile, 
     formData
     } = values;
     
     //load categories and set form data
 
     const init = () => {
+        // getCategories().then(data => {
+        //     if(data.error){
+        //         setValues({...values,error: data.error});
+        //     }else {
+        //         setValues({...values,categories: data, formData: new FormData()});
+        //     }
+        // });
+        
+        initCategories();
+        initBrand();
+        initPc();
+        initHair();
+
+    };
+
+    
+
+    const initCategories = () => {
         getCategories().then(data => {
             if(data.error){
                 setValues({...values,error: data.error});
             }else {
-                setValues({...values,categories: data, formData: new FormData()});
+                setCategories(data);
+                setValues({...values,formData: new FormData()});
             }
         });
-    
+    };
+
+    const initBrand = () => {
         getBrands().then(data => {
             if(data.error){
                 setValues({...values,error: data.error});
             }else {
-                setValues({...values,brands: data, formData: new FormData()});
+                setBrands(data);
+                setValues({...values,formData: new FormData()});
+                
             }
         });
+    };
 
+   
+
+    const initPc = () => {
         getPcs().then(data => {
             if(data.error){
                 setValues({...values,error: data.error});
             }else {
-                setValues({...values,pcs: data, formData: new FormData()});
+                setPcs(data);
+                setValues({...values,formData: new FormData()});
+            }
+        });
+    };
+
+    
+
+    const initHair = () => {
+        getHairs().then(data => {
+            if(data.error){
+                setValues({...values,error: data.error});
+            }else {
+                setHairs(data);
+                setValues({...values,formData: new FormData()});
             }
         });
     };
@@ -80,7 +127,6 @@ const AddProduct = () => {
     useEffect(() => {
         init();
     },[])
-
 
 
    
@@ -102,7 +148,7 @@ const AddProduct = () => {
             }
             else {
                 setValues({
-                    ...values,name:'',description:'',photo:'',
+                    ...values,name:'',description:'',photos:'',
                     price:'',
                     quantity:'',
                     loading:false,
@@ -159,6 +205,15 @@ const AddProduct = () => {
                <option>Select</option>
                {pcs && pcs.map((pc,i) => (
                    <option key={i} value={pc._id}>{pc.name}</option>
+               ))}
+               </select>
+           </div>
+           <div  className="row">
+               <label className="col-6 mb-3">Hair</label>
+               <select className="col-6 mb-3" onChange={handleChange('pc')}>
+               <option>Select</option>
+               {hairs && hairs.map((hair,i) => (
+                   <option key={i} value={hair._id}>{hair.name}</option>
                ))}
                </select>
            </div>

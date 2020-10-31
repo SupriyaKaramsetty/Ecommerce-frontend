@@ -45,6 +45,16 @@ export const getPcs = () => {
     .catch(err => console.log(err));
 };
 
+export const getHairs = () => {
+    return fetch(`${API}/hairs`,{
+        method:'GET'
+    })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+};
+
 export const getFilteredProducts = (skip,limit,filters = {}) => {
     const data = {
         limit,skip,filters
@@ -146,4 +156,38 @@ export const createOrder = (userId, token, createOrderData) => {
         })
         .catch(err => console.log(err));
 };
+
+export const writeReview = (userId,token,name,comment) => {
+    return fetch(`${API}/review/write/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(name,comment)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+export const contact = (user) => {
+    return fetch(`${API}/contact`,{
+           method:"POST",
+           mode: "cors",
+           headers: {
+               //Accept: 'application/json',
+               "Content-Type": "application/json"
+           },
+           body: JSON.stringify(user)
+       })
+       .then(response => {
+           return (response.json());
+        })
+        .catch(err => {
+            alert(err);
+        })
+   };
 

@@ -1,29 +1,29 @@
-import React, {Fragment,useState} from 'react';
+import React, { useState,useEffect,Fragment} from 'react';
 import {Link} from 'react-router-dom';
-import {signup} from '../../auth/index';
-import styles from './Signup.css';
+import { contact } from '../apiCore';
+import styles from '../../user/Signup/Signup';
 
-
-const Signup = () => {
+const ContactUs = () => {
+    
+    
     const [values,setValues] = useState({
         name: '',
         email: '',
-        password: '',
+        message: '',
         error: '',
         success: false 
     })
-    
-    const {name,email,password,success,error} = values;
+
+    const {name,email,message,success,error} = values;
 
     const handleChange = name => event => {
-            setValues({...values, error:false,[name]:event.target.value});
-    };
+        setValues({...values, error:false,[name]:event.target.value});
+};
 
-    
     const clickSubmit = event => {
         event.preventDefault();
         setValues({...values, error:false});
-        signup({name,email,password})
+        contact({name,email,message})
         .then(data => {
             if(data.error) {
                 setValues({...values, error: data.error, success:false})     
@@ -33,7 +33,7 @@ const Signup = () => {
                     ...values,
                     name: '',
                     email: '',
-                    password: '',
+                    message: '',
                     error: '',
                     success:true
                 })
@@ -50,16 +50,16 @@ const Signup = () => {
 
     const showSuccess = () => (
         <div className={styles.success} style={{display: success ? '' : 'none'}}>
-            Signup Sucessful!     <Link to="/signin">Login</Link> 
+            Your message has been sent!  
         </div>
     );
-   
-    const signUpForm = () => (
 
-     
+
+    const contactUsForm = () => (
+
         <form>
             
-            <h3>Sign Up</h3>
+            <h3>Contact Us</h3>
             {showSuccess()}
             {showError()}
             <div className={styles.formalign}>
@@ -84,21 +84,23 @@ const Signup = () => {
             </div>
             <div className={styles.formalign}>
                  
-                <input onChange={handleChange('password')} 
-                type="password"
-                placeholder="PASSWORD"
-                value={password}
-                className={`form-control ${styles.inputfield}`}
-                />
+                <textarea onChange={handleChange('message')} 
+                type="text"
+                placeholder="message"
+                value={message}
+                className={`form-control ${styles.inputfield}`}>
+
+                </textarea>
+                
                 
             </div>
             <div className={styles.formbtn}>
-					<button className={styles.signupbutton} onClick={clickSubmit}>Sign Up</button>
-					<p>Already Have account? <Link to="/signin">Login</Link></p>
+					<button className={styles.signupbutton} onClick={clickSubmit}>Submit</button>
+					
 			</div>
 
         </form>
-    );  
+    ); 
 
     const  redirectTo = () => (
         <Link to="/"></Link>
@@ -106,19 +108,15 @@ const Signup = () => {
 
     return(
         <Fragment>
-             
-        <div className={styles.wrapper}>
-			<div className={styles.inner}>
-				<div className={styles.imageholder} >
-				</div>
-                {signUpForm()}
-			</div>
-        </div>
+                {contactUsForm()}
+
         </Fragment>
        
     );
 };
 
-export default Signup;
+    // resetForm(){
+    //   this.setState({name: '', email: '', message: ''})
+    // }
 
-
+  export default ContactUs;

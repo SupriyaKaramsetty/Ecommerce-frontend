@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Redirect} from 'react-router-dom';
 import {signin , authenticate, isAuthenticated} from '../../auth/index';
 import styles from './Signin.css';
+import Google from '../../auth/Google';
 
 const Signin = () => {
     const [values,setValues] = useState({
@@ -34,11 +35,11 @@ const Signin = () => {
                         ...values,
                         redirectToReferrer: true
                     });
-                })
+                });
                 
             }
             
-        })
+        });
     };
 
     
@@ -98,14 +99,24 @@ const redirectUser = () => {
     if(isAuthenticated()){
         return <Redirect to="/" />
     }
+    
 };
+
+// const informParent = response => {
+//     authenticate(response,() => {
+//         setValues({
+//             ...values,
+//             redirectToReferrer: true
+//         });
+//     });
+// };
 
 
     return(
         <div className={styles.wrapper}>
 			<div className={styles.inner}>
 				<div className={styles.social} >
-					
+					{/* <Google informParent = {informParent}/> */}
 				</div>
                 {signInForm()}
                 {redirectUser()}

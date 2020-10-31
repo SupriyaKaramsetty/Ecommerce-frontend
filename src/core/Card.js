@@ -58,7 +58,7 @@ const Card = ({
     };
     const showStock = quantity => {
         return quantity > 0 ? (
-          <span className="badge badge-success badge-pill">In Stock </span>
+          <span className="badge badge-success badge-pill">{quantity} Available </span>
         ) : (
           <span className="badge badge-danger badge-pill">Out of Stock </span>
         );
@@ -105,6 +105,12 @@ const Card = ({
           )
         );
       };
+
+
+      const updatedPrice = (price) => {
+        let updprice = price-((15/100)*price);
+          return updprice;
+      }
     return (
 
             <div className={styles.card}>
@@ -113,7 +119,7 @@ const Card = ({
                     {shouldRedirect(redirect)}
                     <CardImage item={product} url="product"  />
                     <p className={styles.desc}>{product.description.substring(0, 50)}..... </p>
-                    <p className={styles.price}>Rs. {product.price}</p> 
+                    <span className={styles.currency} >Rs.</span><span className={styles.price}> {product.price}</span><span className={styles.updprice}>{updatedPrice(product.price)}</span> 
                      <p className="black-10">Sold By: {product.brand && product.brand.name}  </p>
                      
                     {/* <p className="black-9">Added {moment(product.createdAt).fromNow()}</p>  */}

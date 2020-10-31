@@ -1,10 +1,10 @@
 import React,{useState , Fragment} from 'react';
 import {isAuthenticated} from '../../auth/index';
 import {Link} from 'react-router-dom';
-import {createCategory} from '../apiAdmin';
-import styles from './AddCategory.css';
+import {createHair} from '../apiAdmin';
+import styles from './AddHair.css';
 
-const AddCategory = () => {
+const AddHair = () => {
     const [name, setName] = useState('');
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -23,7 +23,7 @@ const clickSubmit = e => {
     setError('');
     setSuccess(false);
     //make request to api to create category
-    createCategory(user._id,token,{name})
+    createHair(user._id,token,{name})
     .then(data => {
         if(data.error){
             setError(true);
@@ -35,7 +35,7 @@ const clickSubmit = e => {
     });
 };
 
-const newCategoryForm = () => (
+const newHairForm = () => (
  <div>
      <form onSubmit={clickSubmit}>
         <div>
@@ -43,13 +43,13 @@ const newCategoryForm = () => (
             <input
             className={styles.inputfield}
             type="text"
-            placeholder="Category"
+            placeholder="Hair"
             onChange={handleChange}
             autoFocus
             required />   
         </div>
 
-        <button className={styles.addcatbutton} style={{marginBottom: "25px", marginLeft:"25px"}}>Create Lip Category</button>
+        <button style={{marginBottom: "25px", marginLeft:"25px"}}>Create Hair Category</button>
     </form>
 </div>
    
@@ -58,12 +58,12 @@ const newCategoryForm = () => (
 
 const showSuccess = () => {
     if(success) {
-        return <h3 className={styles.success}>Category is created</h3>
+        return <h3 className={styles.success}>Hair is created</h3>
     }
 }
 const showError = () => {
     if(error) {
-        return <h3 className={styles.error}>Category should be unique</h3>
+        return <h3 className={styles.error}>Hair should be unique</h3>
     }
 }
 
@@ -80,7 +80,7 @@ return (
      <div className={styles.wrapper} >
          {showSuccess()}
          {showError()}
-         {newCategoryForm()}  
+         {newHairForm()}  
     </div> 
     <div className={styles.wrapper} >
     {goBack()}
@@ -90,7 +90,7 @@ return (
 );
 };
 
-export default AddCategory;
+export default AddHair;
 
     
 

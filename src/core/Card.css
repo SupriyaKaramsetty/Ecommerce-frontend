@@ -29,12 +29,30 @@
     text-align: center;
     font-family: arial;
   }
-  
-  .price {
+
+
+  .currency {
     color: rgb(17, 17, 17);
     font-size: 15px;
     font-weight: bold;
   }
+  .updprice{
+    color: rgb(17, 17, 17);
+    font-size: 15px;
+    font-weight: bold;
+
+  }
+  
+  .price {
+    color: rgb(88, 86, 86);
+    font-size: 15px;
+    font-style:italic;
+    /* font-weight: bold; */
+    text-decoration:line-through;
+    margin-right:7px;
+  }
+
+  
 
   .desc{
       font-size:15px;

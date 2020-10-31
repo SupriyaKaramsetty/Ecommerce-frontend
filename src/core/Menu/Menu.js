@@ -37,6 +37,7 @@ const Menu = (props) => (
             <li className="nav-item pl-4">
                      <Link className="nav-link" to='/' style={isActive(props.history,'/')}>Home</Link>
             </li>
+            
             {/* <li className="nav-item pl-4">
                      <Link className="nav-link" to='/productsList' style={isActive(props.history,'/productsList')}>Products</Link>
             </li> */}
@@ -46,16 +47,18 @@ const Menu = (props) => (
             <li className="nav-item pl-4">
                      <Link className="nav-link" to='/cart' style={isActive(props.history,'/cart')}>Cart {Cart}<sup><small className={styles.cartbadge}>{itemTotal()}</small></sup></Link>
             </li>
-           {isAuthenticated() && isAuthenticated().user.role === 0 && (
+            {isAuthenticated() && isAuthenticated().user.role === 0 && (
                 <li className="nav-item pl-4">
                 <Link className="nav-link" to='/user/dashboard' style={isActive(props.history,'/user/dashboard')}> Dashboard</Link>
                 </li>
            )}
-           {isAuthenticated() && isAuthenticated().user.role === 1 && (     
+            {isAuthenticated() && isAuthenticated().user.role === 1 && (     
                 <li className="nav-item pl-4">
                      <Link className="nav-link" to='/admin/dashboard' style={isActive(props.history,'/admin/dashboard')}>{isAuthenticated().user.name}'s Dashboard</Link>
                 </li>
-           )}
+           ) }
+          
+           
  
             {!isAuthenticated()  && (
                 <Fragment>

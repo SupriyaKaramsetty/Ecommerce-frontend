@@ -60,6 +60,9 @@ const Dashboard = () => {
     };
 
     const purchaseHistory = () => {
+
+
+
         return (
             <div>
                <h3 className={styles.headers}>Purchase history</h3>
@@ -75,7 +78,7 @@ const Dashboard = () => {
                                             <div key={i}>
                                                 <h6>Product name: {p.name}</h6>
                                                 <h6>
-                                                    Product price: Rs.{p.price}
+                                                    Product price: Rs.{p.price - ((15/100)*p.price)}
                                                 </h6>
                                                 <h6>
                                                     Purchased date:{" "}
@@ -83,6 +86,9 @@ const Dashboard = () => {
                                                         p.createdAt
                                                     ).fromNow()}
                                                 </h6>
+                                                {/* <h6>
+                                                    Quantity:{p.quantity}
+                                                </h6> */}
                                             </div>
                                         );
                                     })}

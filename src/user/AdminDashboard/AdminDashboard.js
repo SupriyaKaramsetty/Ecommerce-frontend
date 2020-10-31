@@ -14,16 +14,20 @@ const AdminDashboard = () => {
                <h3 className={styles.headers}>Admin Links</h3>
                <div className={styles.wrappers}>
                  <ul>
-                    <li ><Link className={styles.createlinks} style={{marginTop:"100px"}} to='/create/category'>Create Category</Link></li>
-                    <hr style={{width:"650px",marginRight:"170px",marginBottom:"10px",backgroundColor: "black"}} />
+                    
                     <li ><Link className={styles.createlinks} style={{marginTop:"100px"}} to='/create/brand'>Create Brand</Link></li>
                     <hr style={{width:"650px",marginRight:"170px",marginBottom:"10px",backgroundColor: "black"}} />
+                    <li ><Link className={styles.createlinks} style={{marginTop:"100px"}} to='/create/category'>Create Lip Care Category</Link></li>
+                    <hr style={{width:"650px",marginRight:"170px",marginBottom:"10px",backgroundColor: "black"}} />
                     <li ><Link className={styles.createlinks} style={{marginTop:"100px"}} to='/create/pc'>Create Personal Care Category</Link></li>
+                    <hr style={{width:"650px",marginRight:"170px",marginBottom:"10px",backgroundColor: "black"}} />
+                    <li ><Link className={styles.createlinks} style={{marginTop:"100px"}} to='/create/hair'>Create Hair Category</Link></li>
                     <hr style={{width:"650px",marginRight:"170px",marginBottom:"10px",backgroundColor: "black"}} />
                      <li ><Link className={styles.createlinks} to='/create/product'>Create Product</Link></li>
                      <hr style={{width:"650px",marginRight:"170px",marginBottom:"10px",backgroundColor: "black"}} />
                      <li ><Link className={styles.createlinks} to='/admin/orders'>View Orders</Link></li>
-                     
+                     <hr style={{width:"650px",marginRight:"170px",marginBottom:"10px",backgroundColor: "black"}} />
+                     <li ><Link className={styles.createlinks} to='/admin/products'>Manage Products</Link></li>
                  </ul>
                </div>
               
