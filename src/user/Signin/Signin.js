@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { Redirect} from 'react-router-dom';
+import { Redirect, Link} from 'react-router-dom';
 import {signin , authenticate, isAuthenticated} from '../../auth/index';
 import styles from './Signin.css';
-import Google from '../../auth/Google';
+import SocialLogin from '../../auth/Google';
 
 const Signin = () => {
     const [values,setValues] = useState({
@@ -79,7 +79,9 @@ const showLoading = () =>
             <div className={styles.formbtn}>
              <button className={styles.signinbutton} onClick={clickSubmit}>Submit</button>
              {/* <span className={styles.forgotpd}><a>Forgot password?</a></span> */}
+             <Link to="/forgotpassword"  className={styles.forgotpd} >forgot password</Link>
             </div>
+            <p className={styles.register}>Not Registered yet?<Link to="/signup"> singup</Link></p>
            
         </form>
     );  
@@ -102,24 +104,18 @@ const redirectUser = () => {
     
 };
 
-// const informParent = response => {
-//     authenticate(response,() => {
-//         setValues({
-//             ...values,
-//             redirectToReferrer: true
-//         });
-//     });
-// };
+
 
 
     return(
         <div className={styles.wrapper}>
 			<div className={styles.inner}>
 				<div className={styles.social} >
-					{/* <Google informParent = {informParent}/> */}
+                    <SocialLogin />
 				</div>
                 {signInForm()}
                 {redirectUser()}
+                
                 
 			</div>
         </div>

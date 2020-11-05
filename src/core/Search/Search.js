@@ -1,40 +1,87 @@
 import React, { useState, useEffect } from "react";
-import { getCategories, getBrands, list } from "../apiCore";
+import { getCategories, getBrands,getHairs,getPcs, list } from "../apiCore";
 import Card from "../Card";
 import styles from './Search.css';
 
 const Search = () => {
     const [data, setData] = useState({
         categories: [],
-        //brandlist: [],
-        category: "",
-       // brand: "",
+        brands:[],
+        pcs:[],
+        hairs:[],
+        category: '',
+        brand:'',
+        pc:'',
+        hair:'',
         search: "",
         results: [],
         searched: false
     });
 
-    const { categories, category, search, results, searched } = data;
+    const [categories, setCategories] = useState([]);
+    const [brands, setBrands] = useState([]);
+    const [hairs, setHairs] = useState([]);
+    const [pcs, setPcs] = useState([]);
 
+    const { category, brand, pc , hair, search, results, searched } = data;
+
+
+    const init = () => {  
+        loadCategories();
+        loadBrands();
+        loadPcs();
+        loadHairs();
+
+    };
     const loadCategories = () => {
         getCategories().then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
-                setData({ ...data, categories: data });
+                setCategories(data);
+            }
+        });
+
+    };
+    const loadBrands = () => {
+        getBrands().then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                setBrands(data);
+            }
+        });
+
+    };
+    const loadPcs = () => {
+        getPcs().then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                setPcs(data);
+            }
+        });
+
+    };
+    const loadHairs = () => {
+        getHairs().then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                setHairs(data);
             }
         });
 
     };
 
     useEffect(() => {
-        loadCategories();
+        init();
     }, []);
 
     const searchData = () => {
         // console.log(search, category);
         if (search) {
-            list({ search: search || undefined, category: category }).then(
+            list({ search: search || undefined, category: category, brand: brand, pc: pc , hair: hair}).then(
                 response => {
                     if (response.error) {
                         console.log(response.error);
@@ -87,17 +134,66 @@ const Search = () => {
         <form className={styles.search} onSubmit={searchSubmit} action="" method="get">
 				<input type="search" name="search_text" className={styles.search_text} onChange={handleChange("search")} placeholder="What are you looking for?"/>
 				{/* <input type="button" name="search_button" className={styles.search_button} /> */}                   
+                    <div className="row ">
+                        <div className="col-3 ">
+                        <select 
+                            className={styles.options}
+                            onChange={handleChange("brand")}
+                        >
+                            <option value="All">Brands</option>
+                            {brands.map((c, i) => (
+                                <option key={i} value={c._id}>
+                                    {c.name}
+                                </option>
+                            ))}
+                        </select>   
+                        </div>
+                        <div className="col-3 ">
                         <select 
                             className={styles.options}
                             onChange={handleChange("category")}
                         >
-                            <option value="All">All</option>
+                            <option value="All">Lip Care</option>
                             {categories.map((c, i) => (
                                 <option key={i} value={c._id}>
                                     {c.name}
                                 </option>
                             ))}
                         </select>
+                        </div>
+                        
+                       
+                        <div className="col-3">
+                        <select 
+                            className={styles.options}
+                            onChange={handleChange("pc")}
+                        >
+                            <option value="All">Personal Care</option>
+                            {pcs.map((c, i) => (
+                                <option key={i} value={c._id}>
+                                    {c.name}
+                                </option>
+                            ))}
+                        </select> 
+                        </div>
+                        <div className="col-3">
+                        <select 
+                            className={styles.options}
+                            onChange={handleChange("hair")}
+                        >
+                            <option value="All">Hair Care</option>
+                            {hairs.map((c, i) => (
+                                <option key={i} value={c._id}>
+                                    {c.name}
+                                </option>
+                            ))}
+                        </select> 
+                        </div>
+                    </div>
+                        
+                        
+                        
+                       
                     <input type="submit" style={{ border: "none" }} className={styles.search_button} value="Search" />
         </form>
     );

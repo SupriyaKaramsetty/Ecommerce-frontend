@@ -95,8 +95,14 @@ h4{
 }
 
 .forgotpd:hover {
+    
     color: #ff9a9c;
 
+}
+
+.register{
+    margin-top: 20px;
+    margin-left: 100px;
 }
 @media (max-width: 767px) {
     .inner 

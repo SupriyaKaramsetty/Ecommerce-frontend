@@ -55,7 +55,7 @@ const Shop = () => {
             if(data.error){
                 setError(data.error);
             }else {
-                setPcs(data);
+                setHairs(data);
             }
         });
 
@@ -170,6 +170,7 @@ const Shop = () => {
                          {filteredResults.map((product,i) => (
                         <div key={i} className="col-4 mb-4" >
                         <Card  product={product} /></div>
+                        
                   
               
 

@@ -71,12 +71,7 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
             .then(data => {
                 // console.log(data);
                 nonce = data.nonce;
-                //once you have nonce (card type, card number) send nonce as 'paymentMethodNonce'
-                //and also total to be charged
-                // console.log(
-                //     "send nonce and total to process: ",
-                //     nonce,
-                //     getTotal(products));
+               
 
 
                 const paymentData = {
@@ -88,12 +83,7 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
                     .then(response => {
                         //console.log(response);
                         setData({ success: response.success});
-                        // empty cart
-                        // emptyCart(() => {
-                        //     console.log("payment successful nd cart is emptied");
-                        //     setData({ loading: false, success: response.success, clientToken: null});
-                        // })
-                        // create order
+     
 
                         const createOrderData = {
                             products: products,

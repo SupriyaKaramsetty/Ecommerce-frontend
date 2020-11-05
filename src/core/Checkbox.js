@@ -27,25 +27,6 @@ const Checkbox = ({list, handleFilters}) => {
 
     }
 
-    // const categorymap = () => (
-    //         categories.map ((c,i) => (
-    //             <li key={i} className="list-unstyled">
-    //                 <input onChange={handleToggle(c._id)} value={checked.indexOf(c._id)} type="checkbox" className="form-check-input" />
-    //                 <label className="form-check-label">{c.name}</label>
-    //             </li>
-    //         )
-    //         )
-    // );
-
-    // const brandmap = () => (
-    //     brandlist.map ((c,i) => (
-    //         <li key={i} className="list-unstyled">
-    //             <input onChange={handleToggle(c._id)} value={checked.indexOf(c._id)} type="checkbox" className="form-check-input" />
-    //             <label className="form-check-label">{c.name}</label>
-    //         </li>
-    //     )
-    //     )
-    // );
 
     return(
         list.map ((c,i) => (

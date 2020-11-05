@@ -71,6 +71,12 @@ const Menu = (props) => (
                 </Fragment>
             
             )}
+            {isAuthenticated()  && (
+                    <li className="nav-item pl-4 ">
+                        <Link className="nav-link" to='/contact' style={isActive(props.history,'/contact')}>Contact Us</Link>
+                    </li>
+            )}
+
            {isAuthenticated() && (
             <li className="nav-item pl-4 ">
                      <span  className="nav-link" style={{cursor:'pointer',color:'#ffffff'}} onClick={ ()=> { signout(() => {

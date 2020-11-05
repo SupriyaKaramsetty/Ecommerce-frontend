@@ -110,6 +110,17 @@ export const listRelated = productId => {
         .catch(err => console.log(err));
 };
 
+
+export const listRecommended = productId => {
+    return fetch(`${API}/products/recommended/${productId}`, {
+        method: "GET"
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
 export const getBraintreeClientToken = (userId, token) => {
     return fetch(`${API}/braintree/getToken/${userId}`, {
         method: "GET",
@@ -157,21 +168,28 @@ export const createOrder = (userId, token, createOrderData) => {
         .catch(err => console.log(err));
 };
 
-export const writeReview = (userId,token,name,comment) => {
-    return fetch(`${API}/review/write/${userId}`, {
-        method: "POST",
+
+
+export const addComment = (token, productId, comment) => {
+    console.log(token);
+    return fetch(`${API}/product/comment`,
+      {
+        method: 'PUT',
         headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(name,comment)
-    })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log(err));
-};
+        body: JSON.stringify({productId, comment})
+         
+      })
+      .then(response => {
+        return response;
+      })
+      .catch(err => alert(err));
+  };
+  
+
 
 export const contact = (user) => {
     return fetch(`${API}/contact`,{
@@ -181,13 +199,32 @@ export const contact = (user) => {
                //Accept: 'application/json',
                "Content-Type": "application/json"
            },
+           dataType: 'text',
            body: JSON.stringify(user)
        })
        .then(response => {
-           return (response.json());
+           console.log(response);
+           return (response.text());
         })
         .catch(err => {
             alert(err);
         })
    };
+
+   export const socialLogin = user => {
+    return fetch(`${API}/social-login`,
+      {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        // credentials: 'include', // works only in the same origin
+        body: JSON.stringify(user)
+      })
+      .then(response => response.json())
+      .catch(err => console.log(err));
+  };
+
+
 

@@ -152,6 +152,8 @@ const UpdateProduct = ({ match }) => {
                     photo: '',
                     price: '',
                     quantity: '',
+                    intensity:'',
+                    percentage:'',
                     loading: false,
                     error: false,
                     redirectToProfile: true,
@@ -163,7 +165,7 @@ const UpdateProduct = ({ match }) => {
 
     const newPostForm = () => (
         <form className="mb-3" onSubmit={clickSubmit}>
-            <h4>Post Photo</h4>
+            <h4>Update Photo</h4>
             <div className="form-group">
                 <label className="btn btn-secondary">
                     <input onChange={handleChange('photo')} type="file" name="photo" accept="image/*" />
@@ -197,6 +199,24 @@ const UpdateProduct = ({ match }) => {
                         ))}
                 </select>
             </div>
+            <div  className="form-group">
+               <label className="text-muted" >Lip Care Intensity</label>
+               <select className="text-muted"  onChange={handleChange('intensity')} className="form-control">
+                   <option>Choose</option>
+                   <option value='normal'>normal</option>
+                   <option value='modified'>modified</option>
+                   <option value='intensely modified'>intensely modified</option>
+               </select>
+           </div>
+           <div  className="form-group">
+               <label className="text-muted" >Intensity percentage</label>
+               <select className="text-muted"  onChange={handleChange('percentage')} className="form-control">
+                   <option>Choose</option>
+                   <option value='30%'>30%</option>
+                   <option value='50%'>50%</option>
+                   <option value='75%'>75%</option>
+               </select>
+           </div>
             <div className="form-group">
                 <label className="text-muted">Hair</label>
                 <select onChange={handleChange('hair')} className="form-control">

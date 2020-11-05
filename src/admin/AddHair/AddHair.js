@@ -58,12 +58,12 @@ const newHairForm = () => (
 
 const showSuccess = () => {
     if(success) {
-        return <h3 className={styles.success}>Hair is created</h3>
+        return <h3 className={styles.success}>Hair Category is created</h3>
     }
 }
 const showError = () => {
     if(error) {
-        return <h3 className={styles.error}>Hair should be unique</h3>
+        return <h3 className={styles.error}>Hair Category should be unique</h3>
     }
 }
 

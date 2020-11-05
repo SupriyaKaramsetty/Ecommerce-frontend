@@ -23,7 +23,9 @@ const AddProduct = () => {
         hair:'',
         shipping:'',
         quantity:'',
-        photos: [],
+        intensity:'',
+        percentage:'',
+        photo: '',
         loading:false,
         error:'',
         createdProduct:'',
@@ -48,6 +50,8 @@ const AddProduct = () => {
     hair,
     shipping,
     quantity,
+    intensity,
+    percentage,
     loading,
     error,
     createdProduct,
@@ -131,7 +135,7 @@ const AddProduct = () => {
 
    
     const handleChange = item => event => {
-        const value = item === 'photos' ? event.target.files : event.target.value;
+        const value = item === 'photo' ? event.target.files : event.target.value;
        formData.set(item, value);
         setValues({...values,[item]: value});
     };
@@ -143,14 +147,20 @@ const AddProduct = () => {
 
         createProduct(user._id,token,formData)
         .then(data => {
+            
             if(data.error){
                 setValues({...values, error:data.error});
             }
             else {
+                
                 setValues({
-                    ...values,name:'',description:'',photos:'',
+                    ...values,name:'',
+                    description:'',
+                    photo:'',
                     price:'',
                     quantity:'',
+                    intensity:'',
+                    percentage:'',
                     loading:false,
                     createdProduct: data.name
 
@@ -165,8 +175,8 @@ const AddProduct = () => {
         <form className={styles.inner} onSubmit={clickSubmit}>
             <h4  className={styles.header}>Create Product</h4>
             <div  className="row">
-                <label className='col-6 mb-3'>Chose Photos</label>
-                    <input className=" btn btn-secondary col-6 mb-3" type='file' multiple name='photos' accept='image/*'/>
+                <label className='col-6 mb-3'>Chose Photo</label>
+                    <input className=" btn btn-secondary col-6 mb-3" type='file' multiple name='photo' accept='image/*'/>
                 
             </div>
            <div  className="row">
@@ -182,15 +192,6 @@ const AddProduct = () => {
                <input className="col-6 mb-3" onChange={handleChange('price')} type='number' value={price}/>
            </div>
            <div  className="row">
-               <label className="col-6 mb-3">Category</label>
-               <select className="col-6 mb-3" onChange={handleChange('category')}>
-               <option>Select</option>
-               {categories && categories.map((c,i) => (
-                   <option key={i} value={c._id}>{c.name}</option>
-               ))}
-               </select>
-           </div>
-           <div  className="row">
                <label className="col-6 mb-3">Brand</label>
                <select className="col-6 mb-3" onChange={handleChange('brand')}>
                <option>Select</option>
@@ -199,6 +200,34 @@ const AddProduct = () => {
                ))}
                </select>
            </div>
+           <div  className="row">
+               <label className="col-6 mb-3">Lip Care</label>
+               <select className="col-6 mb-3" onChange={handleChange('category')}>
+               <option>Select</option>
+               {categories && categories.map((c,i) => (
+                   <option key={i} value={c._id}>{c.name}</option>
+               ))}
+               </select>
+           </div>
+           <div  className="row">
+               <label className="col-6 mb-3" >Lip Care Intensity</label>
+               <select className="col-6 mb-3"  onChange={handleChange('intensity')}>
+                   <option>Choose</option>
+                   <option value='normal'>normal</option>
+                   <option value='modified'>modified</option>
+                   <option value='intensely modified'>intensely modified</option>
+               </select>
+           </div>
+           <div  className="row">
+               <label className="col-6 mb-3" >Intensity percentage</label>
+               <select className="col-6 mb-3"  onChange={handleChange('percentage')}>
+                   <option>Choose</option>
+                   <option value='30%'>30%</option>
+                   <option value='50%'>50%</option>
+                   <option value='75%'>75%</option>
+               </select>
+           </div>
+           
            <div  className="row">
                <label className="col-6 mb-3">Personal Care</label>
                <select className="col-6 mb-3" onChange={handleChange('pc')}>

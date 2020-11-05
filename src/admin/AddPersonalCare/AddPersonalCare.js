@@ -43,7 +43,7 @@ const newPcForm = () => (
             <input
             className={styles.inputfield}
             type="text"
-            placeholder="Pesonal Care"
+            placeholder="Personal Care"
             onChange={handleChange}
             autoFocus
             required />   

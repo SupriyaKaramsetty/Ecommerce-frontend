@@ -5,6 +5,7 @@ import {getProducts} from '../apiCore';
 import Card from '../Card';
 import Search from '../Search/Search';
 import about from '../../assets/organicbg.jpg';
+// import ImageApp from '../ImageSearch/ImageApp';
 const Home = () => {
 
     const [productsBySell,setProductsBySell] = useState([]);
@@ -43,6 +44,7 @@ const Home = () => {
 
     return(
         <Fragment >
+           
         <Search />
         
         
@@ -56,29 +58,26 @@ const Home = () => {
                 
                     
                         <div className={styles.flexitemleft}>
-                            <img src={about} alert="" />
-
                             <div>
                                 <p styles={{textAlign:'center'}}>
-                            Toxin free, earth-derived natural products. Almost all of our products are synthetic free."
+                                Choose products that SUPPORT your wellness and help you feel gorgeous
                                 </p>
                             </div>
                         </div>
                         <div className={styles.flexitemcenter}>
-                            <img src={about} alert=""
-                            />
+                            
                             <div>
                                 <p styles={{textAlign:'center'}}>
-                            Toxin free, earth-derived natural products. Almost all of our products are synthetic free."
+                           
+                                Never underrate your Skin, by using chemicals, rather have self-pride by applying organic beauty all-over
                                 </p>
                             </div>
                         </div>
                         <div className={styles.flexitemright}>
-                            <img src={about} alert=""
-                            />
+                           
                             <div>
                                 <p styles={{textAlign:'center'}}>
-                            Toxin free, earth-derived natural products. Almost all of our products are synthetic free."
+                                Live life more organically and more beautifully
                                 </p>
                     
                         

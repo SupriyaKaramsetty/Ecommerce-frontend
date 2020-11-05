@@ -102,23 +102,23 @@
 }
 
 .flexitemleft {
-  background-color: #f1f1f1;
+  background-color: #f8b0b0;
   padding: 50px;
-  font-size: 15px;
+  font-size: 20px;
   flex: 30%;
 }
 
 .flexitemcenter {
-  background-color: #f1f1f1;
+  background-color:#f8b0b0;
   padding: 50px;
-  font-size: 15px;
+  font-size: 20px;
     flex: 30%;
 }
 
 .flexitemright {
-  background-color: dodgerblue;
+  background-color: #f8b0b0;
   padding: 50px;
-  font-size: 15px;
+  font-size: 20px;
   flex: 30%;
 }
 

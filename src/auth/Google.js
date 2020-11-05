@@ -1,44 +1,43 @@
-// import React from 'react';
-// import { API } from '../config';
-// import GoogleLogin from 'react-google-login';
-// import axios from 'axios';
+import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
+import GoogleLogin from 'react-google-login';
+import {socialLogin} from '../core/apiCore';
+import {googleauthenticate} from '../auth/index';
+// import styles from '../user/Signin/Signin';
+ 
+class SocialLogin extends Component {
+  constructor() {
+    super();
+    this.state = {redirectToReferrer: false};
+  }
 
-// const Google = ({ informParent = f => f}) => {
-//     const responseGoogle = response => {
-//         console.log(response.tokenId);
-//         axios({
-//             method: 'POST',
-//             url: `${API}/google-login`,
-//             data: { idToken: response.tokenId }
-//         })
-//             .then(response => {
-//                 console.log('GOOGLE SIGNIN SUCCESS', response);
-//                 // inform parent component
-//                 informParent(response);
-//             })
-//             .catch(error => {
-//                 console.log('GOOGLE SIGNIN ERROR', error.response);
-//             });
-//     };
-//     return (
-//         <div className="pb-3">
-//             <GoogleLogin
-//                 clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
-//                 onSuccess={responseGoogle}
-//                 onFailure={responseGoogle}
-//                 render={renderProps => (
-//                     <button
-//                         onClick={renderProps.onClick}
-//                         disabled={renderProps.disabled}
-//                         className="btn btn-danger btn-lg btn-block"
-//                     >
-//                         <i className="fab fa-google pr-2"></i> Login with Google
-//                     </button>
-//                 )}
-//                 cookiePolicy={'single_host_origin'}
-//             />
-//         </div>
-//     );
-// };
+  responseGoogle = response => {
+    const {googleId, name, email, imageUrl} = response.profileObj;
+    const user = {password: googleId, name, email, imageUrl};
+    socialLogin(user)
+      .then(data => {
+        if (data.error) console.log('Error Login. Please try again..');
+        else {
+            googleauthenticate(data);
+          this.setState({redirectToReferrer: true});
+        }
+      });
+  };
 
-// export default Google;
+  render() {
+    const {redirectToReferrer} = this.state;
+    if (redirectToReferrer) return <Redirect to='/' />;
+    return (
+      <GoogleLogin
+        clientId='254638296199-pvfi29n1cgu33cbcl7qpp7bbt225aidd.apps.googleusercontent.com'
+        buttonText='Login with Google'
+        className="btn btn-danger btn-lg btn-block"
+                onSuccess={this.responseGoogle}
+        onFailure={this.responseGoogle}
+      />
+    );
+  };
+};
+
+export default SocialLogin;
+
